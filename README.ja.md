@@ -35,6 +35,42 @@ _詳細なコンテンツ（リスト・リンク・説明）は保守のため�
 ## 📄 Papers
 - *RAG* (Lewis et al. 2020) · *Lost in the Middle* · *GraphRAG* (Microsoft) · *HyDE*
 
+## 🏗️ Chunking strategies
+
+| Strategy | When |
+|---|---|
+| Fixed-size | Baseline, simple |
+| Sentence/paragraph | Natural boundaries |
+| Semantic | Embedding-based splits — better cohesion |
+| Parent-child | Small chunks to find, large to answer |
+| Recursive | Best default — separators cascade |
+
+## 🔍 Retrieval upgrades
+
+- **Hybrid**: BM25 + dense vectors → RRF fusion
+- **Rerankers**: Cohere/bge-reranker — retrieve 50, rerank to 5
+- **HyDE**: generate a hypothetical answer, embed *that*
+- **Query routing**: send different queries to different indexes
+- **Metadata filters**: pre-filter by date/source/type
+
+## 📐 Evaluation
+
+| Metric | Measures |
+|---|---|
+| Context recall | Was the right chunk retrieved? |
+| Context precision | Were retrieved chunks relevant? |
+| Faithfulness | Is the answer grounded? |
+| Answer relevance | Does it address the query? |
+
+Frameworks: RAGAS, Arize Phoenix, TruLens.
+
+## ⚠️ Failure modes
+
+1. Chunk boundary splits a table → garbage context
+2. Top-k too small → missed context
+3. No metadata → can't filter noise
+4. One embedding model for all content types
+
 ---
 ## 貢献
 
