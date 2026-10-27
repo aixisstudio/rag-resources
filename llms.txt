@@ -24,4 +24,15 @@ Maintained by aixisstudio. Related: Snitch (open-source app firewall). https://g
 | GraphRAG | Entity graphs — better on multi-hop questions |
 
 ## 📏 Evals
-- [RAGAS](https://gith
+- [RAGAS](https://github.com/explodinggradients/ragas) — the reference RAG eval framework
+- ARES, DeepEval, trulens — alternatives
+- Golden rule: **build an eval set before optimizing** — retrieval metrics (hit rate) + generation metrics (faithfulness)
+
+## 📄 Papers
+- *RAG* (Lewis et al. 2020) · *Lost in the Middle* · *GraphRAG* (Microsoft) · *HyDE*
+
+## 🏗️ Chunking strategies
+
+| Strategy | When |
+|---|---|
+| Fixed-size 
