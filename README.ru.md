@@ -4,72 +4,70 @@
 
 RAG — инструменты, паттерны, статьи
 
-_Подробное содержимое (списки, ссылки, описания) ведётся на английском — разделы ниже помогут сориентироваться._
-
-## 🧩 Core stack
-| Component | Tools |
+##   Основной стек
+Компоненты | Инструменты |
 |---|---|
-| Embeddings | OpenAI, Cohere, [sentence-transformers](https://github.com/UKPLab/sentence-transformers), bge, Nomic |
-| Vector DBs | [Qdrant](https://github.com/qdrant/qdrant), [Chroma](https://github.com/chroma-core/chroma), pgvector, Weaviate, Milvus |
-| Frameworks | [LangChain](https://github.com/langchain-ai/langchain), [LlamaIndex](https://github.com/run-llama/llama_index), Haystack |
-| Chunking | semantic splits, recursive splitters, MarkdownHeaderSplitter |
-| Rerank | Cohere Rerank, bge-reranker, [ColBERT](https://github.com/stanford-futuredata/ColBERT) |
+| Встраивание | OpenAI, Cohere, [приговор-трансформеры] (https://github.com/UKPLab/sentence-transformers), bge, Nomic |
+[Qdrant] (https://github.com/qdrant/qdrant), [Chroma] (https://github.com/chroma-core/chroma), pgvector, Weaviate, Milvus |
+[LangChain] (https://github.com/langchain-ai/langchain), [LlamaIndex] (https://github.com/run-llama/llama_index), Haystack |
+Семантические расщепления, рекурсивные расщеплители, MarkdownHeaderSplitter
+Rerank, bge-reranker, [ColBERT] (https://github.com/stanford-futuredata/ColBERT)
 
-## 🔬 Techniques
-| Technique | When |
+##  Tech Техника
+Техника Когда
 |---|---|
-| Naive RAG | Baseline: chunk → embed → retrieve → stuff prompt |
-| Hybrid search | BM25 + vectors — catches keywords & semantics |
-| HyDE | Generate a fake answer, embed *that* for retrieval |
-| Parent-doc retrieval | Chunk small, return the parent section |
-| Reranking | Second-stage cross-encoder — big precision win |
-| Query rewriting | Expand/rephrase the question before search |
-| Agentic RAG | Let an agent decide what to fetch |
-| GraphRAG | Entity graphs — better on multi-hop questions |
+| Наивный RAG | Базовая линия: chunk → embed → retrieve → stuff prompt |
+| Гибридный поиск | BM25 + векторы — ловит ключевые слова и семантику |
+| HyDE | Создать поддельный ответ, вставить *что* для поиска |
+[править править код] [править править код] [править править код]
+| Reranking | Кросс-кодер второго этапа — большая точность выигрыша |
+| Переписывание запросов | Расширить/перефразировать вопрос перед поиском |
+| Агент RAG | Пусть агент решает, что взять |
+| Графография объектов — лучше по многохоп-вопросам |
 
-## 📏 Evals
-- [RAGAS](https://github.com/explodinggradients/ragas) — the reference RAG eval framework
-- ARES, DeepEval, trulens — alternatives
-- Golden rule: **build an eval set before optimizing** — retrieval metrics (hit rate) + generation metrics (faithfulness)
+##   Эвалс
+- [RAGAS] (https://github.com/explodinggradients/ragas) - эталонная рамка RAG eval
+— ARES, DeepEval, trulens — альтернативы
+Золотое правило: ** Построить набор эвалов перед оптимизацией ** — метрики поиска (скорость попадания) + метрики генерации (верность)
 
-## 📄 Papers
-- *RAG* (Lewis et al. 2020) · *Lost in the Middle* · *GraphRAG* (Microsoft) · *HyDE*
+##  Paper Документы
+*RAG* (Lewis et al. 2020) · *Lost in the Middle * *GraphRAG* (Microsoft) · *HyDE*
 
-## 🏗️ Chunking strategies
+## strategies️Стратегии дробления
 
-| Strategy | When |
+Стратегия Когда
 |---|---|
-| Fixed-size | Baseline, simple |
-| Sentence/paragraph | Natural boundaries |
-| Semantic | Embedding-based splits — better cohesion |
-| Parent-child | Small chunks to find, large to answer |
-| Recursive | Best default — separators cascade |
+| Фиксированный размер | Базовый, простой |
+Приговор/пункт Природные границы
+| Семантические | Расщепления на основе встраивания — лучшая сплоченность |
+Маленькие куски, чтобы найти, большие, чтобы ответить
+| Рекурсивный | Лучший дефолт — каскад разделителей |
 
-## 🔍 Retrieval upgrades
+##   Обновления поиска
 
-- **Hybrid**: BM25 + dense vectors → RRF fusion
-- **Rerankers**: Cohere/bge-reranker — retrieve 50, rerank to 5
-- **HyDE**: generate a hypothetical answer, embed *that*
-- **Query routing**: send different queries to different indexes
-- **Metadata filters**: pre-filter by date/source/type
+**Гибридный**: BM25 + плотные векторы → RRF-фьюжн
+**Rerankers**: Cohere/bge-reranker — < 50>, < 5>
+**HyDE**: сгенерировать гипотетический ответ, вставить *что*
+**Маршрутизация запросов**: отправка различных запросов в разные индексы
+** Метаданные фильтры**: предварительный фильтр по дате/источнику/типу
 
-## 📐 Evaluation
+##   Оценка
 
-| Metric | Measures |
+Метрические измерения.
 |---|---|
-| Context recall | Was the right chunk retrieved? |
-| Context precision | Were retrieved chunks relevant? |
-| Faithfulness | Is the answer grounded? |
-| Answer relevance | Does it address the query? |
+Оригинальное название: Was the Right Chunk Recovered?
+| Контекстная точность | Были ли извлеченные фрагменты актуальны? |
+Верность (вера) Является ли ответ обоснованным?
+| Релевантность ответа | Отвечает ли он на запрос? |
 
-Frameworks: RAGAS, Arize Phoenix, TruLens.
+Рамки: RAGAS, Arize Phoenix, TruLens.
 
-## ⚠️ Failure modes
+##  ️ Режимы отказа
 
-1. Chunk boundary splits a table → garbage context
-2. Top-k too small → missed context
-3. No metadata → can't filter noise
-4. One embedding model for all content types
+1. Граница куска разделяет стол → контекст мусора
+2.Слишком маленький топ-к - упущенный контекст
+3.Нет метаданных - не может фильтровать шум
+4. Одна модель встраивания для всех типов контента
 
 ---
 ## Участие
