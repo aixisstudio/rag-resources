@@ -4,72 +4,70 @@
 
 RAG — 检索增强生成：工具、模式、论文
 
-_详细内容（列表、链接、描述）以英文维护 — 以下章节为你指引。_
-
-## 🧩 Core stack
-| Component | Tools |
+□□□ 核心堆栈
+* 组件 * * 工具 * *
 |---|---|
-| Embeddings | OpenAI, Cohere, [sentence-transformers](https://github.com/UKPLab/sentence-transformers), bge, Nomic |
-| Vector DBs | [Qdrant](https://github.com/qdrant/qdrant), [Chroma](https://github.com/chroma-core/chroma), pgvector, Weaviate, Milvus |
-| Frameworks | [LangChain](https://github.com/langchain-ai/langchain), [LlamaIndex](https://github.com/run-llama/llama_index), Haystack |
-| Chunking | semantic splits, recursive splitters, MarkdownHeaderSplitter |
-| Rerank | Cohere Rerank, bge-reranker, [ColBERT](https://github.com/stanford-futuredata/ColBERT) |
+(原始内容存档于2017-09-29) (中文(简体) ). Enbeddings QQ OpenAI, Cohere, [判决-转换器] (https://github.com/UKPLab/sentence-transformers), bge, Nomic QQ.
+(原始内容存档于2018-07-21) (中文(简体) ). Vactor DBs [Qdrant] (https://github.com/qdrant/qdrant), [Chroma] (https://github.com/chroma-core/chroma), pgvector, Weaviate, Milvus |.
+[LangChain](https://github.com/langchain-ai/langchain),[LlamaIndex](https://github.com/run-llama/llama_index),海斯塔克 |
+语义分裂 递归分裂 Markdown HeaderSplitter
+(原始内容存档于2017-09-21) (中文(中国大陆) ). Rerank QQ Cohere Rerank, bge-reranker, [ColBERT] (https://github.com/stanford-futuredata/ColBERT).
 
-## 🔬 Techniques
-| Technique | When |
+□ 技术
+技术 何时
 |---|---|
-| Naive RAG | Baseline: chunk → embed → retrieve → stuff prompt |
-| Hybrid search | BM25 + vectors — catches keywords & semantics |
-| HyDE | Generate a fake answer, embed *that* for retrieval |
-| Parent-doc retrieval | Chunk small, return the parent section |
-| Reranking | Second-stage cross-encoder — big precision win |
-| Query rewriting | Expand/rephrase the question before search |
-| Agentic RAG | Let an agent decide what to fetch |
-| GraphRAG | Entity graphs — better on multi-hop questions |
+基线:块块 * 嵌入 * 检索 * 东西 提示 * *
+QQ混合搜索 QQ BM25+矢量 – 捕获关键词和语义 QQ
+HyDE 生成一个假答案,嵌入 * 用于检索 *
+QQ 父文件检索QQ Chunk 小, 返回父部分QQ
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+QQQ 查询重写QQ 扩展/ 在搜索QQ前重写问题
+让特工决定拿什么
+===========================================================================================================================================================================================
 
-## 📏 Evals
-- [RAGAS](https://github.com/explodinggradients/ragas) — the reference RAG eval framework
-- ARES, DeepEval, trulens — alternatives
-- Golden rule: **build an eval set before optimizing** — retrieval metrics (hit rate) + generation metrics (faithfulness)
+□□□□爱瓦尔斯
+- [RAGAS] (https://github.com/explodinggradients/ragas)——参考RAG eval框架
+- ARES、DeepEval、Trulens - 替代品
+- 黄金规则:** 在优化前建立一套电子计算仪**——检索度量衡(重率)+生成度量衡(忠诚度)
 
-## 📄 Papers
-- *RAG* (Lewis et al. 2020) · *Lost in the Middle* · *GraphRAG* (Microsoft) · *HyDE*
+□ □ 论文
+- *RAG*(Lewis等人,2020年) *中途迷失* *GraphRAG*(微软) *HyDE*
 
-## 🏗️ Chunking strategies
+□□□□□□□□□□□□□□□□□□□□
 
-| Strategy | When |
+战略 何时
 |---|---|
-| Fixed-size | Baseline, simple |
-| Sentence/paragraph | Natural boundaries |
-| Semantic | Embedding-based splits — better cohesion |
-| Parent-child | Small chunks to find, large to answer |
-| Recursive | Best default — separators cascade |
+基准,简单
+* 句子/段 * 自然边界 *
+• 嵌入式分裂——加强凝聚力
+小块要找,大块要回答
+===============================================================================================================================================================================
 
-## 🔍 Retrieval upgrades
+□□ 检索升级
 
-- **Hybrid**: BM25 + dense vectors → RRF fusion
-- **Rerankers**: Cohere/bge-reranker — retrieve 50, rerank to 5
-- **HyDE**: generate a hypothetical answer, embed *that*
-- **Query routing**: send different queries to different indexes
-- **Metadata filters**: pre-filter by date/source/type
+- ** Hybrid**:BM25 + 密集载体 → RRF聚变
+- ** 车手**:Cohere/bge-ranker——取回50号车手,调整为5号车手
+- ** HyDE**:生成一个假设答案,嵌入 *
+- 查询路径**:向不同的索引发送不同的查询
+- **气象数据过滤器**:按日期/来源/类型分列的预过滤器
 
-## 📐 Evaluation
+□ □ □ 评价
 
-| Metric | Measures |
+措施
 |---|---|
-| Context recall | Was the right chunk retrieved? |
-| Context precision | Were retrieved chunks relevant? |
-| Faithfulness | Is the answer grounded? |
-| Answer relevance | Does it address the query? |
+QQ 背景回顾 QQ 找到正确的块了吗 ? @ @ info
+是否检索到相关的块 ?
+忠诚 答案有根据吗?
+回答相关吗?
 
-Frameworks: RAGAS, Arize Phoenix, TruLens.
+框架:RAGAS,阿里兹凤凰,特鲁伦斯.
 
-## ⚠️ Failure modes
+# # # # 失败模式
 
-1. Chunk boundary splits a table → garbage context
-2. Top-k too small → missed context
-3. No metadata → can't filter noise
-4. One embedding model for all content types
+1. 块边界将一个表格分割为-垃圾背景
+2. 上K太小 漏掉上下文
+3. 任何元数据都无法过滤噪音
+4. 所有内容类型的嵌入模型
 
 ---
 ## 贡献
