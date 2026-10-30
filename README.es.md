@@ -4,72 +4,70 @@
 
 RAG — herramientas, patrones y papers
 
-_El contenido detallado (listas, enlaces, descripciones) está en inglés por mantenibilidad — las secciones siguientes te guían._
-
 ## 🧩 Core stack
-| Component | Tools |
+Silencio Componente Silencioso Herramientas
 |---|---|
-| Embeddings | OpenAI, Cohere, [sentence-transformers](https://github.com/UKPLab/sentence-transformers), bge, Nomic |
-| Vector DBs | [Qdrant](https://github.com/qdrant/qdrant), [Chroma](https://github.com/chroma-core/chroma), pgvector, Weaviate, Milvus |
-| Frameworks | [LangChain](https://github.com/langchain-ai/langchain), [LlamaIndex](https://github.com/run-llama/llama_index), Haystack |
-| Chunking | semantic splits, recursive splitters, MarkdownHeaderSplitter |
-| Rerank | Cohere Rerank, bge-reranker, [ColBERT](https://github.com/stanford-futuredata/ColBERT) |
+← Embeddings ← OpenAI, Cohere, [sentence-transformers] (https://github.com/UKPLab/sentence-transformers), bge, Nomic TEN
+← Vector DBs tención [Qdrant](https://github.com/qdrant/qdrant), [Chroma](https://github.com/chroma-core/chroma), pgvector, Weaviate, Milvus ←
+[LlamaIndex] (https://github.com/run-llama/llama_index), Haystack TEN
+¦ Chunking ← divisiones semánticas, splitters recursivos, MarkdownHeaderSplitter
+Silencio Rerank Silencio Cohere Rerank, bge-reranker, [ColBERT] (https://github.com/stanford-futuredata/ColBERT)
 
 ## 🔬 Techniques
-| Technique | When |
+TENIDO TÉCNICA ANTERIOR ANTERIOR ANTERIOR
 |---|---|
-| Naive RAG | Baseline: chunk → embed → retrieve → stuff prompt |
-| Hybrid search | BM25 + vectors — catches keywords & semantics |
-| HyDE | Generate a fake answer, embed *that* for retrieval |
-| Parent-doc retrieval | Chunk small, return the parent section |
-| Reranking | Second-stage cross-encoder — big precision win |
-| Query rewriting | Expand/rephrase the question before search |
-| Agentic RAG | Let an agent decide what to fetch |
-| GraphRAG | Entity graphs — better on multi-hop questions |
+← Naive RAG ← Base de referencia: chunk → embed → recuperar →
+Silencio Búsqueda híbrida Silencio BM25 + vectores — capturas palabras clave &amp; semántica TEN
+← HyDE ← Generar una respuesta falsa, incrustada * que* para la recuperación
+Silencio Parent-doc retrieval ← Chunk pequeño, devolver la sección de padres
+TEN Reranking ← Segundo encoder en escena - gran precisión ganar TEN
+← Consultar reescritura Silencio Expandir/refrase la pregunta antes de la búsqueda
+Silencio Agente RAG Silencio Deja que un agente decida qué buscar
+← Gráficos de la Entidad – mejor en preguntas multihop
 
-## 📏 Evals
-- [RAGAS](https://github.com/explodinggradients/ragas) — the reference RAG eval framework
-- ARES, DeepEval, trulens — alternatives
-- Golden rule: **build an eval set before optimizing** — retrieval metrics (hit rate) + generation metrics (faithfulness)
+## Evals
+- [RAGAS] (https://github.com/explodinggradients/ragas) - el marco de referencia RAG eval
+- ARES, DeepEval, trulens - alternativas
+- Regla de oro: **Construye un eval antes de optimizar** — métricas de recuperación (tasa de entrada) + métricas de generación (fidelidad)
 
 ## 📄 Papers
-- *RAG* (Lewis et al. 2020) · *Lost in the Middle* · *GraphRAG* (Microsoft) · *HyDE*
+*RAG* (Lewis et al. 2020) · *Lost in the Middle* · *GraphRAG* (Microsoft) · *HyDE*
 
-## 🏗️ Chunking strategies
+## ## 🏗Besando estrategias
 
-| Strategy | When |
+TEN TERRITORIO TERRITORIO TERRITORIO TERRITORIO
 |---|---|
-| Fixed-size | Baseline, simple |
-| Sentence/paragraph | Natural boundaries |
-| Semantic | Embedding-based splits — better cohesion |
-| Parent-child | Small chunks to find, large to answer |
-| Recursive | Best default — separators cascade |
+tención Fijación de tamaño TEN Baseline, simple TEN
+TENENCIA/Párrafo de la vida
+← Semántica Silencio Las divisiones basadas en la incrustación — mejor cohesión
+Silencio Parent-child Silencio Pequeños pedazos para encontrar, grande para responder 
+Ø Recursive Silencio Mejor predeterminado: separadores cascada
 
-## 🔍 Retrieval upgrades
+## 🔍 Actualizaciones de recuperación
 
-- **Hybrid**: BM25 + dense vectors → RRF fusion
-- **Rerankers**: Cohere/bge-reranker — retrieve 50, rerank to 5
-- **HyDE**: generate a hypothetical answer, embed *that*
-- **Query routing**: send different queries to different indexes
-- **Metadata filters**: pre-filter by date/source/type
+- **Hybrid**: BM25 + vectores densos → RRF fusión
+- **Rerankers**: Cohere/bge-reranker - recuperar 50, rerank a 5
+- **HyDE**: generar una respuesta hipotética, incrustada *que*
+- **Query routing**: enviar diferentes consultas a diferentes índices
+- ** Filtros de metadatos**: prefiltro por fecha/fuente/tipo
 
 ## 📐 Evaluation
 
-| Metric | Measures |
+TEN TERRITORIO TERMINAR MEDIDAS
 |---|---|
-| Context recall | Was the right chunk retrieved? |
-| Context precision | Were retrieved chunks relevant? |
-| Faithfulness | Is the answer grounded? |
-| Answer relevance | Does it address the query? |
+Silencio Context recall Silencio ¿Se recuperó el trozo correcto?
+Silencio Context precision Silencio ¿Se recuperaron trozos relevantes?
+Silencio ¿La respuesta está basada?
+Silencio Respuesta relevante Silencio ¿Se refiere a la consulta?
 
-Frameworks: RAGAS, Arize Phoenix, TruLens.
+Marcos: RAGAS, Arize Phoenix, TruLens.
 
-## ⚠️ Failure modes
+## ⋅ Failure Modes
 
-1. Chunk boundary splits a table → garbage context
-2. Top-k too small → missed context
-3. No metadata → can't filter noise
-4. One embedding model for all content types
+1. El límite de hundimiento divide una tabla → contexto de basura
+2. Top-k demasiado pequeño → contexto perdido
+3. Sin metadatos → no puede filtrar el ruido
+4. Un modelo de integración para todos los tipos de contenido
 
 ---
 ## Contribuir
