@@ -4,72 +4,70 @@
 
 RAG — génération augmentée : outils, patterns, papiers
 
-_Le contenu détaillé (listes, liens, descriptions) est en anglais pour rester maintenable — les sections ci-dessous te guident._
-
-## 🧩 Core stack
-| Component | Tools |
+Pile de base
+Composante Outils
 |---|---|
-| Embeddings | OpenAI, Cohere, [sentence-transformers](https://github.com/UKPLab/sentence-transformers), bge, Nomic |
-| Vector DBs | [Qdrant](https://github.com/qdrant/qdrant), [Chroma](https://github.com/chroma-core/chroma), pgvector, Weaviate, Milvus |
-| Frameworks | [LangChain](https://github.com/langchain-ai/langchain), [LlamaIndex](https://github.com/run-llama/llama_index), Haystack |
-| Chunking | semantic splits, recursive splitters, MarkdownHeaderSplitter |
-| Rerank | Cohere Rerank, bge-reranker, [ColBERT](https://github.com/stanford-futuredata/ColBERT) |
+(https://github.com/UKPLab/sentence-transformers), bge, Nomic
+[Qdurant](https://github.com/qdrant/qdrant), [Chroma](https://github.com/chroma-core/chroma), pgvector, Weaviate, Milvus
+Cadres de travail
+Sciages sémantiques, sciages récursifs, MarkdownheaderSplitter
+"Reranking" Cohere Reranking, bge-ranker, [ColBERT] (https://github.com/stanford-futuredata/ColBERT)
 
-## 🔬 Techniques
-| Technique | When |
+Techniques
+Technique
 |---|---|
-| Naive RAG | Baseline: chunk → embed → retrieve → stuff prompt |
-| Hybrid search | BM25 + vectors — catches keywords & semantics |
-| HyDE | Generate a fake answer, embed *that* for retrieval |
-| Parent-doc retrieval | Chunk small, return the parent section |
-| Reranking | Second-stage cross-encoder — big precision win |
-| Query rewriting | Expand/rephrase the question before search |
-| Agentic RAG | Let an agent decide what to fetch |
-| GraphRAG | Entity graphs — better on multi-hop questions |
+Naïf RAG. Base de référence : morceau → embarque → recover → stuff prompt.
+Recherche hybride de BM25 + vecteurs — capture de mots clés & sémantique
+HyDE= Générer une réponse fausse, intégrer *qui* pour récupérer
+Récupérer le parent-doc
+Reclassement de la deuxième étape — grand gain de précision
+Réécriture de la requête Expand/reformuler la question avant la recherche
+Que l'agent décide quoi récupérer
+GraphiqueRAG graphes de l'entité — mieux sur les questions multi-horizontales
 
-## 📏 Evals
-- [RAGAS](https://github.com/explodinggradients/ragas) — the reference RAG eval framework
+Évales
+- [RAGAS](https://github.com/explodinggradients/ragas) — le cadre d'évaluation RAG de référence
 - ARES, DeepEval, trulens — alternatives
-- Golden rule: **build an eval set before optimizing** — retrieval metrics (hit rate) + generation metrics (faithfulness)
+- Règle d'or: ** construire un jeu d'éval avant d'optimiser** — mesures de récupération (taux de succès) + mesures de génération (fidélité)
 
-## 📄 Papers
+Papiers
 - *RAG* (Lewis et al. 2020) · *Lost in the Middle* · *GraphRAG* (Microsoft) · *HyDE*
 
-## 🏗️ Chunking strategies
+Stratégies de découpe
 
-| Strategy | When |
+Stratégie Quand
 |---|---|
-| Fixed-size | Baseline, simple |
-| Sentence/paragraph | Natural boundaries |
-| Semantic | Embedding-based splits — better cohesion |
-| Parent-child | Small chunks to find, large to answer |
-| Recursive | Best default — separators cascade |
+Référence de taille fixe, simple
+Limitations naturelles
+Une meilleure cohésion
+De petits morceaux à trouver, gros à répondre
+Recursive, meilleure par défaut — séparateurs en cascade
 
-## 🔍 Retrieval upgrades
+Améliorations de récupération
 
-- **Hybrid**: BM25 + dense vectors → RRF fusion
-- **Rerankers**: Cohere/bge-reranker — retrieve 50, rerank to 5
-- **HyDE**: generate a hypothetical answer, embed *that*
-- **Query routing**: send different queries to different indexes
-- **Metadata filters**: pre-filter by date/source/type
+- **Hybrid**: BM25 + vecteurs denses → Fusion RRF
+- ** Reclasseurs**: Cohere/bge-reclasser — récupérer 50, reclasser à 5
+- **HyDE**: générer une réponse hypothétique, intégrer *que*
+- **Acheminement des requêtes**: envoyer différentes requêtes à différents index
+- **Filtres de métadonnées**: préfiltre par date/source/type
 
-## 📐 Evaluation
+Évaluation
 
-| Metric | Measures |
+Mesures
 |---|---|
-| Context recall | Was the right chunk retrieved? |
-| Context precision | Were retrieved chunks relevant? |
-| Faithfulness | Is the answer grounded? |
-| Answer relevance | Does it address the query? |
+Le bon morceau a été récupéré ?
+Précision du contexte
+La fidélité La réponse est-elle fondée?
+Répondez à la question pertinente
 
-Frameworks: RAGAS, Arize Phoenix, TruLens.
+Cadres : RAGAS, Arize Phoenix, TruLens.
 
-## ⚠️ Failure modes
+Modes de défaillance
 
-1. Chunk boundary splits a table → garbage context
-2. Top-k too small → missed context
-3. No metadata → can't filter noise
-4. One embedding model for all content types
+1. La limite du morceau divise une table → contexte des ordures
+2. Top-k trop petit → contexte oublié
+3. Aucune métadonnées → ne peut filtrer le bruit
+4. Un modèle d'intégration pour tous les types de contenu
 
 ---
 ## Contribuer
